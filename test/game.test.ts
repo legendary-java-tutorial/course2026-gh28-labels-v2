@@ -23,3 +23,10 @@ test("логика игры: ответы на догадку и загадан�
   assert.equal(parseGuess(""), null);
   assert.equal(parseGuess("2.5"), null);
 });
+
+test("режим hard: подсказка указывает на загаданное число, как в classic", () => {
+  const game = parseGame(readFileSync(new URL("../docs/game.json", import.meta.url), "utf8"));
+  const hard = game.modes.hard;
+  assert.equal(hint(hard, 715, 300), "больше");
+  assert.equal(hint(hard, 715, 900), "меньше");
+});
